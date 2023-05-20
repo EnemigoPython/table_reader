@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Table Reader</title>
+  <link rel="stylesheet" type="text/css" href="reader.css">
+  <script src="reader.js" defer></script>
+</head>
+<body>
+  <h1>Table Reader</h1>
+  <h2 id="fileTitle"></h2>
+  
+  <div id="filePickerContainer">
+    <label for="filePicker">Select a file:</label>
+    <input type="file" id="filePicker" accept=".html" onchange="importTableFromFile(event)">
+  </div>
+
+  <input type="text" id="searchBar" placeholder="Search Table..." oninput="filterTable()">
+
+  <div id="index">
+    <h3><a href="#top">Index</a></h3>
+    <div id="indexItems"></div>
+  </div>
+  
+  <div id="tableContainer"></div>
+</body>
+</html>

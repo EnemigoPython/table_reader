@@ -9,9 +9,10 @@
   <h1>Table Reader</h1>
   <h2 id="fileTitle"></h2>
   
-  <div id="filePickerContainer">
+  <div id="controlsContainer">
     <label for="filePicker">Select a file:</label>
     <input type="file" id="filePicker" accept=".html" onchange="importTableFromFile(event)">
+    <input type="text" id="lookupUrl" placeholder="Enter lookup URL...">
   </div>
 
   <input type="text" id="searchBar" placeholder="Search Table..." oninput="filterTable()">

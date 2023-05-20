@@ -1,10 +1,17 @@
+// HTML elements
+const tableContainer = document.getElementById('tableContainer');
+const indexItems = document.getElementById('indexItems');
+const searchBar = document.getElementById('searchBar');
+const fileTitle = document.getElementById('fileTitle');
+const lookupUrl = document.getElementById('lookupUrl');
+
 function filterTable() {
-    const searchText = document.getElementById('searchBar').value.toLowerCase();
-    const rows = document.querySelectorAll('#tableContainer table tbody tr');
+    const searchText = searchBar.value.toLowerCase();
+    const filterRows = document.querySelectorAll('#tableContainer table tbody tr');
 
     // Iterate through the rows and hide those that don't match the search text
-    for (let i = 0; i < rows.length; i++) {
-        const row = rows[i];
+    for (let i = 0; i < filterRows.length; i++) {
+        const row = filterRows[i];
         const rowData = row.textContent.toLowerCase();
 
         if (rowData.includes(searchText) || row.id.startsWith('header-')) {
@@ -30,18 +37,41 @@ function importTableFromFile(event) {
     reader.readAsText(file);
 }
 
-function addIdsToSingleItemRows() {
-    const table = document.getElementById('tableContainer').querySelector('table');
+const createSlug = (s) => s
+    .toLowerCase()  // Convert to lowercase
+    .replace(/[^a-z0-9-]/g, '-')  // Replace non-alphanumeric characters with hyphens
+    .replace(/-+/g, '-')  // Replace consecutive hyphens with a single hyphen
+    .replace(/^-|-$/g, '');  // Remove leading and trailing hyphens
+
+const isValidUrl = (url) => {
+    const pattern = new RegExp('^((https?:\\/\\/)?([\\da-z.-]+)\\.([a-z.]{2,6})([\\/\\w.-]*)*\\/?)(\\?.*)?$');
+    return pattern.test(url);
+}
+      
+/**
+ * Process the table & perform tasks relating to contents
+ */
+function postTableDisplay() {
+    const table = tableContainer.querySelector('table');
     const rows = table.getElementsByTagName('tr');
-    const indexItems = document.getElementById('indexItems');
     indexItems.innerHTML = ''; // Clear previous index items
 
     for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
-        const cells = row.getElementsByTagName('td');
+        const cells = Array.from(row.getElementsByTagName('td'));
+
+        const cellText = cells.map(cell => cell.textContent.trim());
+        cells.forEach((cell) => {
+            cell.addEventListener('click', () => {
+                if (isValidUrl(lookupUrl.value)) {
+                    const slug = createSlug(cell.textContent.trim());
+                    const url = `${lookupUrl.value}${slug}`;
+                    window.open(url, '_blank');
+                }
+            });
+        });
 
         if (cells.length === 1) {
-            const cellText = cells[0].textContent.trim();
             const uniqueId = 'header-' + i;
 
             // Add unique ID to the row
@@ -50,7 +80,7 @@ function addIdsToSingleItemRows() {
             // Create anchor tag in the index
             const indexItem = document.createElement('a');
             indexItem.setAttribute('href', '#' + uniqueId);
-            indexItem.textContent = cellText;
+            indexItem.textContent = cellText[0];
 
             // Add anchor tag to the index container
             indexItems.appendChild(indexItem);
@@ -59,6 +89,9 @@ function addIdsToSingleItemRows() {
     }
 }
 
+/**
+ * @param {string} tableData 
+ */
 function displayTable(tableData) {
     tableContainer.innerHTML = "<span id='top'></span>" + tableData;
 
@@ -70,13 +103,21 @@ function displayTable(tableData) {
         fileTitle.textContent = fileName;
     }
 
-    addIdsToSingleItemRows();
+    postTableDisplay();
 }
 
-// Load the cached table on page load
+lookupUrl.addEventListener('input', () => {
+    localStorage.setItem('cachedLookup', lookupUrl.value)
+});
+
+// Load cached values on page load
 window.onload = () => {
     const cachedTable = localStorage.getItem('cachedTable');
     if (cachedTable) {
         displayTable(cachedTable);
+    }
+    const cachedLookupUrl = localStorage.getItem('cachedLookup');
+    if (cachedLookupUrl) {
+        lookupUrl.value = cachedLookupUrl;
     }
 };

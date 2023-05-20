@@ -21,12 +21,13 @@ label {
     margin-bottom: 20px;
 }
 
-#filePickerContainer {
+#controlsContainer {
     text-align: left;
+    width: 100%;
 }
 
-#filePickerContainer label,
-#filePickerContainer input[type="file"] {
+#controlsContainer label,
+#controlsContainer input[type="file"] {
     display: inline-block;
 }
 
@@ -57,6 +58,11 @@ th, td {
     text-align: left;
 }
 
+td:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+}
+
 th {
     background-color: #444;
 }
@@ -65,16 +71,23 @@ a {
     color: inherit;
 }
 
-#searchBar {
-    margin: 0 auto;
+#searchBar, #lookupUrl {
     padding: 5px;
-    width: 50%;
     background-color: #444;
     color: #fff;
     border: none;
     border-radius: 5px;
-    display: block;
+}
+
+#lookupUrl {
+    float: right;
+    width: 30%;
+}
+
+#searchBar {
     margin: 0 auto;
+    width: 50%;
+    display: block;
 }
 
 #index {
@@ -114,5 +127,5 @@ a {
 }
 
 #indexItems a:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Set the desired hover background color */
+    background-color: rgba(255, 255, 255, 0.2);
 }

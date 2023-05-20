@@ -6,6 +6,6 @@ Use this simple tool to import table HTML (just the `<table>...</table>` bit). T
 
 Only tested so far on the example table (blender cheat sheet).
 
-I directly wrote almost none of this, it is mostly the result of prompting ChatGPT & a little bit of refactoring of the output code.
+I directly wrote very little of this, it is mostly the result of prompting ChatGPT & a little bit of refactoring of the output code.
 
 My favourite part is the free nice CSS!

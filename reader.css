@@ -36,7 +36,7 @@ label {
     border: 1px solid #555;
     padding: 10px;
     background-color: #222;
-    width: 67%;
+    width: 75%;
     float: right;
     box-sizing: border-box;
     overflow-y: auto;
@@ -96,7 +96,7 @@ a {
     background-color: #444;
     padding: 10px;
     text-align: center;
-    width: 33%;
+    width: 25%;
     float: left;
     box-sizing: border-box;
     overflow-y: auto;

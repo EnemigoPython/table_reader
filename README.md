@@ -13,3 +13,4 @@ My favourite part is the free CSS!
 ## features
 - Use the search bar to filter rows (won't filter one-line rows as these are assumed to be headers)
 - Use the lookup URL input to enter the first part of a search URL, then when you click on any cell in the table it will use that URL to search for the cell text.
+- Click on headers on the left side to scroll to them in the table.

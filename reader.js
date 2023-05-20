@@ -56,6 +56,7 @@ function postTableDisplay() {
     const rows = table.getElementsByTagName('tr');
     indexItems.innerHTML = ''; // Clear previous index items
 
+    let headerNum = 0;
     for (let i = 0; i < rows.length; i++) {
         const row = rows[i];
         const cells = Array.from(row.getElementsByTagName('td'));
@@ -72,7 +73,8 @@ function postTableDisplay() {
         });
 
         if (cells.length === 1) {
-            const uniqueId = 'header-' + i;
+            headerNum++;
+            const uniqueId = 'header-' + headerNum;
 
             // Add unique ID to the row
             row.setAttribute('id', uniqueId);

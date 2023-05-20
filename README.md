@@ -1,7 +1,7 @@
 # table_reader
 A quick HTML table reader I cooked up using ChatGPT
 
-Use this simple tool to import table HTML (just the <table>...</table> bit. This tool will index it & provide search functionality.
+Use this simple tool to import table HTML (just the `<table>...</table>` bit. This tool will index it & provide search functionality.
 
 Only tested so far on the example table (blender cheat sheet).
 

@@ -2,6 +2,7 @@
 const tableContainer = document.getElementById('tableContainer');
 const indexItems = document.getElementById('indexItems');
 const searchBar = document.getElementById('searchBar');
+const clearButton = document.getElementById('clearButton');
 const fileTitle = document.getElementById('fileTitle');
 const lookupUrl = document.getElementById('lookupUrl');
 
@@ -111,6 +112,11 @@ function displayTable(tableData) {
 
 lookupUrl.addEventListener('input', () => {
     localStorage.setItem('cachedLookup', lookupUrl.value)
+});
+
+clearButton.addEventListener('click', () => {
+    searchBar.value = '';
+    filterTable();
 });
 
 // Load cached values on page load

@@ -84,11 +84,46 @@ a {
     width: 30%;
 }
 
+#searchBarContainer {
+    margin-top: 20px;
+    text-align: center;
+    position: relative;
+  }
+
 #searchBar {
     margin: 0 auto;
     width: 50%;
     display: block;
 }
+
+#clearButton {
+    position: absolute;
+    top: 50%;
+    right: 25%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  #clearButton::before,
+  #clearButton::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 2px;
+    background-color: white;
+  }
+  
+  #clearButton::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+  
+  #clearButton::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
 
 #index {
     margin-top: 20px;

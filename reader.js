@@ -103,6 +103,7 @@ function displayTable(tableData) {
         const fileName = lastSelectedFile.replace(/^.*[\\/]/, '').replace(/\.[^/.]+$/, ''); // Extract the file name without path and extension
         const fileTitle = document.getElementById('fileTitle');
         fileTitle.textContent = fileName;
+        localStorage.setItem('cachedFileName', fileName);
     }
 
     postTableDisplay();
@@ -114,6 +115,10 @@ lookupUrl.addEventListener('input', () => {
 
 // Load cached values on page load
 window.onload = () => {
+    const cachedFileName = localStorage.getItem('cachedFileName');
+    if (cachedFileName) {
+        fileTitle.textContent = cachedFileName;
+    }
     const cachedTable = localStorage.getItem('cachedTable');
     if (cachedTable) {
         displayTable(cachedTable);
